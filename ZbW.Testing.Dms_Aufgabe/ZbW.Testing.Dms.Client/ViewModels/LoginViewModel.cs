@@ -1,12 +1,11 @@
-﻿namespace ZbW.Testing.Dms.Client.ViewModels
+﻿using System.Windows;
+using Prism.Commands;
+using Prism.Mvvm;
+using ZbW.Testing.Dms.Client.Properties;
+using ZbW.Testing.Dms.Client.Views;
+
+namespace ZbW.Testing.Dms.Client.ViewModels
 {
-    using System.Windows;
-
-    using Prism.Commands;
-    using Prism.Mvvm;
-
-    using ZbW.Testing.Dms.Client.Views;
-
     internal class LoginViewModel : BindableBase
     {
         private readonly LoginView _loginView;
@@ -28,6 +27,11 @@
         {
             get
             {
+                if (string.IsNullOrEmpty(_benutzername))
+                {
+                    return Settings.Default.DefaultUser;
+                }
+
                 return _benutzername;
             }
 
